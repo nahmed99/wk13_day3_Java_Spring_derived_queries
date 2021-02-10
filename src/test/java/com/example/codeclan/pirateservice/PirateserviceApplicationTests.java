@@ -59,4 +59,12 @@ class PirateserviceApplicationTests {
 		assertEquals(8, foundPirates.size());
 	}
 
+	@Test
+	public void canGetRaidsByLocation() {
+
+		List<Raid> foundRaids = raidRepository.findByLocationIgnoreCase("Tortuga");
+		assertEquals(8, foundRaids.size());
+	}
+
+
 }

@@ -11,4 +11,7 @@ public interface RaidRepository extends JpaRepository<Raid, Long> {
 
     // get raids by pirate id
     List<Raid> findByPiratesId(Long pirateId);
+
+    // Derived query to find raids by location
+    List<Raid> findByLocationIgnoreCase(String location);
 }

@@ -25,9 +25,16 @@ public class RaidController {
         return new ResponseEntity<>(allRaids, HttpStatus.OK);
     }
 
+    // SHOW (by id)
     @GetMapping(value = "/raids/{id}")
     public ResponseEntity<Optional<Raid>> getRaid(@PathVariable Long id){
         return new ResponseEntity<>(raidRepository.findById(id), HttpStatus.OK);
+    }
+
+    // SHOW (by location)
+    @GetMapping("/raids/location/{location}")
+    public ResponseEntity<List<Raid>> getRaidByLocation(@PathVariable String location) {
+        return new ResponseEntity<>(raidRepository.findByLocationIgnoreCase(location), HttpStatus.OK);
     }
 
     @PostMapping("/raids")

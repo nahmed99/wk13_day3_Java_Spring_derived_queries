@@ -1,7 +1,9 @@
 package com.example.codeclan.pirateservice.controllers;
 
 import com.example.codeclan.pirateservice.models.Pirate;
+import com.example.codeclan.pirateservice.models.Raid;
 import com.example.codeclan.pirateservice.repositories.PirateRepository;
+import com.example.codeclan.pirateservice.repositories.RaidRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,10 @@ public class PirateController {
 
     @Autowired
     PirateRepository pirateRepository;
+
+    @Autowired
+    RaidRepository raidRepository;
+
 
     @GetMapping(value ="/pirates")
     public ResponseEntity<List<Pirate>> getAllPirates(){
@@ -32,4 +38,12 @@ public class PirateController {
         pirateRepository.save(pirate);
         return new ResponseEntity<>(pirate, HttpStatus.CREATED);
     }
+
+    // GET raids from a specific pirate
+    @GetMapping("/pirates/{id}/raids")
+    public ResponseEntity<List<Raid>> getRaidsFromPirate(@PathVariable Long id) {
+        List<Raid> raids = raidRepository.findByPiratesId(id);
+        return new ResponseEntity<>(raids, HttpStatus.OK);
+    }
+
 }

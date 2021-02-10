@@ -12,6 +12,10 @@ import org.springframework.boot.test.autoconfigure.core.AutoConfigureCache;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 //@AutoConfigureTestDatabase - database was NOT updating with this annotation, so commented it out!!!
 @SpringBootTest
 class PirateserviceApplicationTests {
@@ -46,6 +50,13 @@ class PirateserviceApplicationTests {
 
 		raid.addPirate(pirate);
 		raidRepository.save(raid);
+	}
+
+	@Test
+	public void canGetPiratesOverAge30() {
+
+		List<Pirate> foundPirates = pirateRepository.findByAgeGreaterThan(30);
+		assertEquals(8, foundPirates.size());
 	}
 
 }

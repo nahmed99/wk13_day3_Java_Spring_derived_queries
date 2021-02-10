@@ -37,6 +37,13 @@ public class RaidController {
         return new ResponseEntity<>(raidRepository.findByLocationIgnoreCase(location), HttpStatus.OK);
     }
 
+
+    @GetMapping("/raids/ships/{id}")
+    public ResponseEntity<List<Raid>> findByPiratesShipId(@PathVariable Long id) {
+        return new ResponseEntity<>(raidRepository.findByPiratesShipId(id), HttpStatus.OK);
+    }
+
+
     @PostMapping("/raids")
     public ResponseEntity<Raid> createRaid(@RequestBody Raid raid) {
         raidRepository.save(raid);

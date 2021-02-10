@@ -1,6 +1,7 @@
 package com.example.codeclan.pirateservice.repositories;
 
 import com.example.codeclan.pirateservice.models.Raid;
+import com.example.codeclan.pirateservice.models.Ship;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,4 +15,7 @@ public interface RaidRepository extends JpaRepository<Raid, Long> {
 
     // Derived query to find raids by location
     List<Raid> findByLocationIgnoreCase(String location);
+
+    // Find all the raids that a given ship has gone on
+    List<Raid> findByPiratesShipId(Long shipId);
 }

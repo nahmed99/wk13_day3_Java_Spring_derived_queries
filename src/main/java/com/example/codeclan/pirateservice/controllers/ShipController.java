@@ -1,5 +1,6 @@
 package com.example.codeclan.pirateservice.controllers;
 
+import com.example.codeclan.pirateservice.models.Raid;
 import com.example.codeclan.pirateservice.models.Ship;
 import com.example.codeclan.pirateservice.repositories.ShipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,13 @@ public class ShipController {
     public ResponseEntity<Optional<Ship>> getPirate(@PathVariable Long id){
         return new ResponseEntity<>(shipRepository.findById(id), HttpStatus.OK);
     }
+
+    // SHOW (by pirate firstName)
+    @GetMapping("/ships/pirates/{firstName}")
+    public ResponseEntity<List<Ship>> getShipsByPirateFirstName(@PathVariable String firstName) {
+        return new ResponseEntity<>(shipRepository.findByPiratesFirstName(firstName), HttpStatus.OK);
+    }
+
 
     @PostMapping("/ships")
     public ResponseEntity<Ship> createShip(@RequestBody Ship ship) {

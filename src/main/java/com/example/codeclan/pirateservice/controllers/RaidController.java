@@ -38,7 +38,7 @@ public class RaidController {
     }
 
 
-    @GetMapping("/raids/ships/{id}")
+    @GetMapping("/raids/ship/{id}")
     public ResponseEntity<List<Raid>> findByPiratesShipId(@PathVariable Long id) {
         return new ResponseEntity<>(raidRepository.findByPiratesShipId(id), HttpStatus.OK);
     }
